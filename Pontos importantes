@@ -1,0 +1,31 @@
+Pontos importantes:
+
+O wifi fingerprinting assume que os aparelhos funcionam da mesma forma.
+
+Na verdade eles funcionam significativamente diferente, até aqueles produzidos pela mesma marca. (Um mesmo aparelho também faz leituras diferentes).
+
+GPS proporcionou um grande crescimento visto nos serviços baseados em localizaçãonos últimos anos.
+
+Em locais fechados ou em canyons urbanos o GPS não tem performance aceitável na localização.
+
+Muitas tecnologias foram propostas para fazer a localização em ambientes internos, tais como: bluetooth, Zigbee, GSM, uma combinação de acelerômetro e magnetrometro, GNSS de alta sensibilidade e Wi-Fi.
+
+Explanar sobre fingerprinting( fase offline[leitura dos sinais RSSI com seus respectivos MACs, e em locais predeterminados ] e fase online [para localizar a posição do indivíduo, uma nova leitura dos sinais RSSI da rede é feita e comparada com o mapa criado]).
+
+Existem diversos dispositivos que podem fazer estas leitura, tais como, smartphones, notebooks, dongles wifi, então as leituras podem sair muito diferentes.As leituras também podem se diferenciar por causa da potências de suas antenas
+
+Assuntos importantes:
+
+WiFi calibration
+
+http://processors.wiki.ti.com/index.php/WL12xx_NLCP_Calibration_Process#Calibration_Steps
+
+https://www.coppermountaintech.com/content/docs/library/WiFi_Bluetooth_PCB_tuning_and_Antenna_Testing.pdf
+
+RSSI filtering:
+
+https://www.researchgate.net/publication/45813846_ERFS_Enhanced_RSSI_value_Filtering_Schema_for_Localization_in_Wireless_Sensor_Networks   (precisa se cadastrar e solicitar acesso ao texto todo, ainda estou esperando)
+
+https://www.wouterbulten.nl/blog/tech/kalman-filters-explained-removing-noise-from-rssi-signals/
+
+https://pdfs.semanticscholar.org/presentation/30b2/e00fd491d320f8f18a6413bfa654a338a58f.pdf (slide 21)
