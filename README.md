@@ -15,4 +15,12 @@
 
     roslaunch jedi yoda.launch robot:=titanium world:=robocinV3
 
+5º Passo:
+	Adicionar no script movebase.py da fiorela
 
+6º Passo:
+	catkin build jedi
+	chmod +x movebase.py (estar na pasta do movebase.py)
+
+7º Passo:
+	rosrun movebase.py 
