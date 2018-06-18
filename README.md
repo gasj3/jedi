@@ -23,4 +23,4 @@
 	chmod +x movebase.py (estar na pasta do movebase.py)
 
 7º Passo:
-	rosrun movebase.py 
+	rosrun jedi scripts/movebase.py 

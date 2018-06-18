@@ -20,7 +20,7 @@
 
 6º Passo:
 	catkin build jedi
-	chmod +x movebase.py
+	chmod +x movebase.py (estar na pasta do movebase.py)
 
 7º Passo:
 	rosrun movebase.py 
