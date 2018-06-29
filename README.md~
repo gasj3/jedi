@@ -23,4 +23,13 @@
 	chmod +x movebase.py (estar na pasta do movebase.py)
 
 7º Passo:
-	rosrun movebase.py 
+	rosrun jedi scripts/movebase.py 
+
+
+Comandos Show:(rodar com  o gazebo rodando)
+
+rostopic echo -c /amcl_pose
+rostopic info /amcl_pose
+rostopic list
+rosnode info movebase.py
+
