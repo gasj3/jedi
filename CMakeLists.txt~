@@ -1,9 +1,24 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(jedi)
-find_package(catkin REQUIRED COMPONENTS)
-catkin_package()
+find_package(catkin REQUIRED COMPONENTS
+message_generation
+)
 
-foreach(dir launch Media models worlds)
+add_message_files(
+  FILES
+  PersonDistance.msg
+)
+catkin_package(
+  CATKIN_DEPENDS
+  message_runtime
+)
+generate_messages(
+  DEPENDENCIES
+)
+
+
+
+foreach(dir launch Media models scripts worlds)
     install(DIRECTORY ${dir}/
         DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/${dir})
 endforeach(dir)

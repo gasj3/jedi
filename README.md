@@ -31,6 +31,33 @@
 	rosrun jedi scripts/movebase.py 
 
 
+Criar publisher:
+1º Passo:
+Criar pasta msg e criar dentro dela um arquivo como o PersonDistance.msg
+Indicando os tipos e nomes das variáveis a serem publicadas
+
+2º Passo:
+Alterar os package.xml e CMakeLists.txt (se não alterar como estão no git não pega [no caso só adiciona alguns parâmetros])
+
+3º Passo:
+Dar catkin build 
+
+4º Passo:
+Abrir segundo terminal
+rosrun jedi closest_person_node.py
+
+5º Passo:
+Abrir terceiro terminal
+rostopic list (checar se o nó closest_person foi criado, se sim é só sucesso kk)
+rostopic echo closest_person (Checa qual a pessoa mais próxima do robô, a posição das pessoas estão com um valor aproximado)
+
+6º Passo (Opcional):
+
+Mover o robô, seja com o movebase ou algo assim com executando os outros 3 terminais pra realmente checar qual pessoa ele está mais perto
+
+
+
+
 Comandos Show:(rodar com  o gazebo rodando)
 
 rostopic echo -c /amcl_pose
@@ -38,3 +65,8 @@ rostopic info /amcl_pose
 rostopic list
 rosnode info movebase.py
 
+
+rostopic type /amcl_pose
+geometry_msgs/PoseWithCovarianceStamped
+
+mkdir msg
