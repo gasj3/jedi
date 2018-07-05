@@ -38,7 +38,7 @@ class PersonMonitor(object):
 #rospy.loginfo('x: {}, y: {}'.format(x,y))
 def main():
 
-	rospy.init_node('teste')
+	rospy.init_node('closest_person_node')
 	people = []
 	
 	people.append(("Person1", -1.36, 6.3)); #Pessoa da sala inferior direita

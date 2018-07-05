@@ -38,16 +38,19 @@ Indicando os tipos e nomes das variáveis a serem publicadas
 
 2º Passo:
 Alterar os package.xml e CMakeLists.txt (se não alterar como estão no git não pega [no caso só adiciona alguns parâmetros])
+chmod +x PersonDistance.msg
 
 3º Passo:
 Dar catkin build 
 
 4º Passo:
 Abrir segundo terminal
+source ./devel/setup.bash (Em cada terminal sempre usar este comando)
 rosrun jedi closest_person_node.py
 
 5º Passo:
 Abrir terceiro terminal
+source ./devel/setup.bash (Em cada terminal sempre usar este comando)
 rostopic list (checar se o nó closest_person foi criado, se sim é só sucesso kk)
 rostopic echo closest_person (Checa qual a pessoa mais próxima do robô, a posição das pessoas estão com um valor aproximado)
 
@@ -70,3 +73,4 @@ rostopic type /amcl_pose
 geometry_msgs/PoseWithCovarianceStamped
 
 mkdir msg
+

@@ -40,9 +40,10 @@ def main():
 
 	rospy.init_node('teste')
 	people = []
-	people.append(("Person1", 2.31, 8.80)); 
+	
+	people.append(("Person1", -1.36, 6.3)); #Pessoa da sala inferior direita
 	people.append(("Person2", 2.58, -1.07)); #Pessoa da sala superior direita
-	people.append(("Person3", -1.36, 6.3)); #Pessoa da sala inferior direita
+	people.append(("Person3", 2.31, 8.80)); #Pessoa na sala da esquerda
 	people.append(("Person4", 3.12, 5.56)); #Pessoa da sala do meio superior
 	pub = rospy.Publisher('closest_person', PersonDistance, queue_size=10)
 	monitor = PersonMonitor (pub, people)

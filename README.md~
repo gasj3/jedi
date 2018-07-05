@@ -37,7 +37,8 @@ Criar pasta msg e criar dentro dela um arquivo como o PersonDistance.msg
 Indicando os tipos e nomes das variáveis a serem publicadas
 
 2º Passo:
-Alterar os package.xml e CMakeLists.txt (se não alterar como estão no git não pega)
+Alterar os package.xml e CMakeLists.txt (se não alterar como estão no git não pega [no caso só adiciona alguns parâmetros])
+chmod +x PersonDistance.msg
 
 3º Passo:
 Dar catkin build 
@@ -70,3 +71,4 @@ rostopic type /amcl_pose
 geometry_msgs/PoseWithCovarianceStamped
 
 mkdir msg
+
