@@ -58,6 +58,14 @@ rostopic echo closest_person (Checa qual a pessoa mais próxima do robô, a posi
 
 Mover o robô, seja com o movebase ou algo assim com executando os outros 3 terminais pra realmente checar qual pessoa ele está mais perto
 
+Para detectar pessoas:
+
+roslaunch pal_person_detector_opencv detector.launch image:=/xtion/rgb/image_raw
+
+rosrun image_view image_view image:=/person_detector/debug
+
+
+
 
 
 

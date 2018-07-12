@@ -26,7 +26,6 @@ import rospy
 
 # Ros messages
 from sensor_msgs.msg import CompressedImage
-from std_msgs.msg import String
 # We do not use cv_bridge it does not support CompressedImage in python
 # from cv_bridge import CvBridge, CvBridgeError
 
@@ -37,11 +36,9 @@ class ImageFeature:
 	def __init__(self):
 		'''Initialize ros publisher, ros subscriber'''
 		# topic where we publish
-		self.image_pub = rospy.Publisher("/vision_human",
-			String, queue_size = 10)
+		self.image_pub = rospy.Publisher("/output/image_raw/compressed",
+			CompressedImage, queue_size = 10)
 		# self.bridge = CvBridge()
-
-		self.coca_img = cv2.imread("cocacola.jpg")
 
 		# subscribed Topic
 		self.subscriber = rospy.Subscriber("/camera/image/compressed",
@@ -61,28 +58,35 @@ class ImageFeature:
 		image_np = cv2.imdecode(np_arr, cv2.CV_LOAD_IMAGE_COLOR)
 		# image_np = cv2.imdecode(np_arr, cv2.IMREAD_COLOR) # OpenCV >= 3.0
 
-		detector = cv2.FeatureDetector_create("SIFT")
-		descriptor = cv2.DescriptorExtractor_create("SIFT")
+		#### Feature detectors using CV2 ####
+		# "","Grid","Pyramid" +
+		# "FAST","GFTT","HARRIS","MSER","ORB","SIFT","STAR","SURF"
+		method = "GridFAST"
+		feat_det = cv2.FeatureDetector_create(method)
+		time1 = time.time()
 
-		kp1 = detector.detect(img1)
-		kp1, des1 = descriptor.compute(img1, kp1)
+		# convert np image to grayscale
+		featPoints = feat_det.detect(
+			cv2.cvtColor(image_np, cv2.COLOR_BGR2GRAY))
+		time2 = time.time()
+
+		if VERBOSE:
+			print '%s detector found: %s points in: %s sec.' % (method,
+				len(featPoints), time2-time1)
+
+		for featpoint in featPoints:
+			x,y = featpoint.pt
+			cv2.circle(image_np,(int(x), int(y)), 3, (0,0,255), -1)
+
+		cv2.imshow('cv_img', image_np)
+		cv2.waitKey(2)
+
+		#### Create CompressedImage ####
+		msg = CompressedImage()
+		msg.header.stamp = rospy.Time.now()
+		msg.format = "jpeg"
+		msg.data = np.array(cv2.imencode('.jpg', image_np)[1]).tostring()
 		
-		kp2 = detector.detect(img2)
-		kp2, des2 = descriptor.compute(img2, kp2)
-
-		bf = cv2.BFMatcher()
-		matches = bf.knnMatch(des1, des2, k = 2)
-		matches = list(map(lambda a: [a[0]], filter(lambda a: a[0].distance < 0.75*a[1].distance, matches)))
-
-		matches = sorted(matches, key=lambda val: val[0].distance)
-
-		dist = np.mean(list(map(lambda x: x[0].distance, matches[:25])))
-
-		msg = str(dist)
-		
-		# if dist < 170:
-
-
 		# Publish new image
 		self.image_pub.publish(msg)
 
